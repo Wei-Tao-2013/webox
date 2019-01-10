@@ -1,0 +1,12 @@
+{
+    "cities":[
+            {"cityId" :"0","cityName" :"melbourne"}
+         
+    ],
+    
+    "serviceTypes" :[
+            {"typeId" :"0","typeName" :"none"}
+    ],
+    "serviceFunction" : "false"  
+}
+
