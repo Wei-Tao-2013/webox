@@ -1,0 +1,14 @@
+.project
+.settings/
+.vscode/
+common-components/.classpath
+common-components/.factorypath
+common-components/.project
+common-components/.settings/
+common-components/target/
+logs/
+web-services/.classpath
+web-services/.factorypath
+web-services/.project
+web-services/.settings/
+web-services/target/
