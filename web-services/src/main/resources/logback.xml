@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 <!--
-	<property name="LOG_HOME" value="/Users/weitao/logs" />
-   <property name="LOG_HOME" value="/home/ubuntu/uookee-logs" />
+	
+   <property name="LOG_HOME" value="C:\logs" />
+   <property name="LOG_HOME" value="/home/ubuntu/app-logs" />
 	-->
-	  <property name="LOG_HOME" value="C:\logs" />
+	<property name="LOG_HOME" value="/home/ec2-user/service-logs" />
 	
 	<appender name="FILE-AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		
@@ -47,7 +48,7 @@
 
 	</appender>
 
-	<logger name="com.gi" level="DEBUG"
+	<logger name="com.webox" level="DEBUG"
 		additivity="false">
 		<appender-ref ref="FILE-AUDIT" />
 	</logger>
