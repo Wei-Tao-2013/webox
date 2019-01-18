@@ -4,9 +4,11 @@
 	
    <property name="LOG_HOME" value="C:\logs" />
    <property name="LOG_HOME" value="/home/ubuntu/app-logs" />
-	-->
+    <property name="LOG_HOME" value="/users/weitao/logs" />
 	<property name="LOG_HOME" value="/home/ec2-user/service-logs" />
+	-->
 	
+	<property name="LOG_HOME" value="/users/weitao/logs" />
 	<appender name="FILE-AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		
 		<file>${LOG_HOME}/application.log</file>
