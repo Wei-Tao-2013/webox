@@ -3,8 +3,9 @@ package com.webox.common.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor
-public class RawData{
+@Data
+@NoArgsConstructor
+public class RawData {
     private String openId;
     private String nickName;
     private String gender;
@@ -13,5 +14,5 @@ public class RawData{
     private String country;
     private String avatarUrl;
     private String language;
-    
+
 }

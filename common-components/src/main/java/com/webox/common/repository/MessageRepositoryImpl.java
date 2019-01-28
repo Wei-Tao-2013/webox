@@ -13,36 +13,34 @@ import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
 import static org.springframework.data.mongodb.core.query.Criteria.*;
 
-public class MessageRepositoryImpl implements MessageRepositoryCustom{
-   
-  private static final Logger logger = LoggerFactory.getLogger(MessageRepositoryImpl.class);
+public class MessageRepositoryImpl implements MessageRepositoryCustom {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+	private static final Logger logger = LoggerFactory.getLogger(MessageRepositoryImpl.class);
 
-    @Override
-    public List<MessageCount> unReadMessageCount(String receiver) {
-      AggregationResults<MessageCount> results = mongoTemplate.aggregate(
-        newAggregation(
-            match(where("receiver").is(receiver).and("msgStatus").is(0).and("msgChannel").is("service")),
-            group("userId").count().as("total"),
-            project("total").and("userId").previousOperation(),
-			      sort(Direction.DESC, "serviceId")
-        ),Message.class, MessageCount.class);
-      return results.getMappedResults();
-    }
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
-    /*
-    public List<MessageCount> unReadMessageCount(String receiver) {
-      AggregationResults<MessageCount> results = mongoTemplate.aggregate(
-        newAggregation(
-            match(where("receiver").is(receiver).and("msgStatus").is(0)),
-            group("serviceId").count().as("total"),
-            project("total").and("serviceId").previousOperation(),
-			      sort(Direction.DESC, "serviceId")
-        ),Message.class, MessageCount.class);
-      return results.getMappedResults();
-    }
-    */
-  
-  } 
+	@Override
+	public List<MessageCount> unReadMessageCount(String receiver) {
+		AggregationResults<MessageCount> results = mongoTemplate
+				.aggregate(
+						newAggregation(
+								match(where("receiver").is(receiver).and("msgStatus").is(0).and("msgChannel")
+										.is("service")),
+								group("userId").count().as("total"), project("total").and("userId").previousOperation(),
+								sort(Direction.DESC, "serviceId")),
+						Message.class, MessageCount.class);
+		return results.getMappedResults();
+	}
+
+	/*
+	 * public List<MessageCount> unReadMessageCount(String receiver) {
+	 * AggregationResults<MessageCount> results = mongoTemplate.aggregate(
+	 * newAggregation( match(where("receiver").is(receiver).and("msgStatus").is(0)),
+	 * group("serviceId").count().as("total"),
+	 * project("total").and("serviceId").previousOperation(), sort(Direction.DESC,
+	 * "serviceId") ),Message.class, MessageCount.class); return
+	 * results.getMappedResults(); }
+	 */
+
+}

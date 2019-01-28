@@ -14,25 +14,26 @@ import static org.springframework.data.mongodb.core.query.Criteria.*;
 
 public class JobRepositoryImpl implements JobRepositoryCustom {
 
-  private static final Logger logger = LoggerFactory.getLogger(JobRepositoryImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(JobRepositoryImpl.class);
 
-  @Autowired
-  private MongoTemplate mongoTemplate;
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
-  @Override
-  public List<Job> loadJobsByUser(String userId, int status) {
-    if (status < 99) {
-      AggregationResults<Job> results = mongoTemplate
-          .aggregate(newAggregation(match(where("userId").is(userId).and("status").is(status)),
-              sort(Direction.DESC, "jobCreatedTime")), "job", Job.class);
-      return results.getMappedResults();
-    } else { // all
-      AggregationResults<Job> results = mongoTemplate
-          .aggregate(newAggregation(match(where("userId").is(userId).and("status").ne(3)), // exculding cancel job
-              sort(Direction.DESC, "jobCreatedTime")), "job", Job.class);
-      return results.getMappedResults();
-    }
+	@Override
+	public List<Job> loadJobsByUser(String userId, int status) {
+		if (status < 99) {
+			AggregationResults<Job> results = mongoTemplate
+					.aggregate(newAggregation(match(where("userId").is(userId).and("status").is(status)),
+							sort(Direction.DESC, "jobCreatedTime")), "job", Job.class);
+			return results.getMappedResults();
+		} else { // all
+			AggregationResults<Job> results = mongoTemplate
+					.aggregate(newAggregation(match(where("userId").is(userId).and("status").ne(3)), // exculding cancel
+																										// job
+							sort(Direction.DESC, "jobCreatedTime")), "job", Job.class);
+			return results.getMappedResults();
+		}
 
-  }
+	}
 
 }

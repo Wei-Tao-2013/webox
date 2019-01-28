@@ -11,15 +11,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
 import com.webox.common.model.Account;
 import com.webox.common.model.Address;
-import com.webox.common.model.Message;
 import com.webox.common.model.RawData;
 import com.webox.common.model.Request;
 import com.webox.common.model.Response;
 import com.webox.common.model.User;
 import com.webox.common.utils.AppConsts;
-import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -80,15 +79,12 @@ public class WeiXinAccountRegister extends AccountRegister {
             User existUer = (User) userList.get(0);
             if (newAcc) {
                 // send a emssage to new account
-/*
-                Message msg = messageManage.constructMessageObj(existUer.getUserId(), "sender", "text",
-                        "尊敬的用户，欢迎来到友客世界!");
-                msg.setMsgStatus(0);// in Q
-                msg.setMsgInQReason(2);// websocket disconnnected
-                msg.setSendOutTime(null); // yet to be sent
-                msg.setTrytoSendRound(0);
-                messageManage.saveMessage(msg);
-*/
+                /*
+                 * Message msg = messageManage.constructMessageObj(existUer.getUserId(),
+                 * "sender", "text", "尊敬的用户，欢迎来到友客世界!"); msg.setMsgStatus(0);// in Q
+                 * msg.setMsgInQReason(2);// websocket disconnnected msg.setSendOutTime(null);
+                 * // yet to be sent msg.setTrytoSendRound(0); messageManage.saveMessage(msg);
+                 */
                 // end of send
                 existUer.addUserAccount(account);
                 userRepository.save(existUer);
@@ -105,14 +101,11 @@ public class WeiXinAccountRegister extends AccountRegister {
                 userRepository.save(newUser);
                 // send a emssage to new account
                 /*
-                Message msg = messageManage.constructMessageObj(newUser.getUserId(), "sender", "text",
-                        "尊敬的用户，欢迎来到友客世界!");
-                msg.setMsgStatus(0);// in Q
-                msg.setMsgInQReason(2);// websocket disconnnected
-                msg.setSendOutTime(null); // yet to be sent
-                msg.setTrytoSendRound(0);
-                messageManage.saveMessage(msg);
-                */
+                 * Message msg = messageManage.constructMessageObj(newUser.getUserId(),
+                 * "sender", "text", "尊敬的用户，欢迎来到友客世界!"); msg.setMsgStatus(0);// in Q
+                 * msg.setMsgInQReason(2);// websocket disconnnected msg.setSendOutTime(null);
+                 * // yet to be sent msg.setTrytoSendRound(0); messageManage.saveMessage(msg);
+                 */
                 // end of send
                 response.setAppInfo(AppConsts.registerInfo.REGISTERSUCESS.toString()); // new account and user register
                 response.setAppCode(AppConsts.REG_REGISTERSUCESS);

@@ -44,14 +44,13 @@ public class Response implements java.io.Serializable {
 	private String quoteId;
 	private List<Quote> quoteList;
 	private Quote quote;
-	private Map<String,List<Quote>> quoteGroup;
+	private Map<String, List<Quote>> quoteGroup;
 
-	// for order 
+	// for order
 	private String orderId;
 	private List<Order> orderList;
 	private Order order;
-	private Map<String,List<Order>> orderGroup;
-
+	private Map<String, List<Order>> orderGroup;
 
 	// for watchList
 	private List<WatchList> watchList;

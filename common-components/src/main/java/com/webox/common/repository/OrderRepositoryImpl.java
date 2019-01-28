@@ -13,41 +13,41 @@ import static org.springframework.data.mongodb.core.query.Criteria.*;
 
 public class OrderRepositoryImpl implements OrderRepositoryCustom {
 
-  private static final Logger logger = LoggerFactory.getLogger(JobRepositoryImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(JobRepositoryImpl.class);
 
-  @Autowired
-  private MongoTemplate mongoTemplate;
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
-  @Override
-  public List<Order> loadOrdersByService(String serviceId) {
-    AggregationResults<Order> results = mongoTemplate.aggregate(
-        newAggregation(match(where("serviceId").is(serviceId)), sort(Direction.DESC, "orderBookedTime")), "order",
-        Order.class);
-    return results.getMappedResults();
-  }
+	@Override
+	public List<Order> loadOrdersByService(String serviceId) {
+		AggregationResults<Order> results = mongoTemplate.aggregate(
+				newAggregation(match(where("serviceId").is(serviceId)), sort(Direction.DESC, "orderBookedTime")),
+				"order", Order.class);
+		return results.getMappedResults();
+	}
 
-  @Override
-  public List<Order> loadOrdersByVendor(String vendorId) {
-    AggregationResults<Order> results = mongoTemplate.aggregate(
-        newAggregation(match(where("vendorId").is(vendorId)), sort(Direction.DESC, "orderBookedTime")), "order",
-        Order.class);
-    return results.getMappedResults();
-  }
+	@Override
+	public List<Order> loadOrdersByVendor(String vendorId) {
+		AggregationResults<Order> results = mongoTemplate.aggregate(
+				newAggregation(match(where("vendorId").is(vendorId)), sort(Direction.DESC, "orderBookedTime")), "order",
+				Order.class);
+		return results.getMappedResults();
+	}
 
-  @Override
-  public List<Order> loadOrdersByCustomer(String userId) {
-    AggregationResults<Order> results = mongoTemplate.aggregate(
-        newAggregation(match(where("userId").is(userId)), sort(Direction.DESC, "orderBookedTime")), "order",
-        Order.class);
-    return results.getMappedResults();
-  }
+	@Override
+	public List<Order> loadOrdersByCustomer(String userId) {
+		AggregationResults<Order> results = mongoTemplate.aggregate(
+				newAggregation(match(where("userId").is(userId)), sort(Direction.DESC, "orderBookedTime")), "order",
+				Order.class);
+		return results.getMappedResults();
+	}
 
-  @Override
-  public List<Order> loadOrdersByServiceAndUser(String serviceId, String userId) {
-    AggregationResults<Order> results = mongoTemplate
-        .aggregate(newAggregation(match(where("userId").is(userId).and("serviceId").is(serviceId)),
-            sort(Direction.DESC, "orderBookedTime")), "order", Order.class);
-    return results.getMappedResults();
-  }
+	@Override
+	public List<Order> loadOrdersByServiceAndUser(String serviceId, String userId) {
+		AggregationResults<Order> results = mongoTemplate
+				.aggregate(newAggregation(match(where("userId").is(userId).and("serviceId").is(serviceId)),
+						sort(Direction.DESC, "orderBookedTime")), "order", Order.class);
+		return results.getMappedResults();
+	}
 
 }

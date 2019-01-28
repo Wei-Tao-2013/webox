@@ -38,10 +38,10 @@ public class WatchListManage {
     @Autowired
     PostInfoManage postInfoManage;
 
-//    public WatchList getWatchList(String watchListId) {
-  //      WatchList watchList = watchListRepository.findByWatchListId(watchListId);
-    //    return watchList;
-   // }
+    // public WatchList getWatchList(String watchListId) {
+    // WatchList watchList = watchListRepository.findByWatchListId(watchListId);
+    // return watchList;
+    // }
 
     public WatchList toggleWatchList(String userId, String serviceId) {
         WatchList WatchList = new WatchList(userId, serviceId);
@@ -71,10 +71,10 @@ public class WatchListManage {
         return response;
     }
 
-    public List<String> loadUserIdListByWatchService(String serviceId){
+    public List<String> loadUserIdListByWatchService(String serviceId) {
         List<String> userIds = new ArrayList<String>();
         List<WatchList> WatchLists = watchListRepository.findByServiceId(new ObjectId(serviceId));
-        WatchLists.forEach(o->{
+        WatchLists.forEach(o -> {
             userIds.add(o.getUserId());
         });
         return userIds;

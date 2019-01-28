@@ -11,13 +11,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Document
-@Data @NoArgsConstructor
+@Data
+@NoArgsConstructor
 
 public class Order {
     private @Id String orderId;
     @Indexed
-    private String userId;  // User.userId
-    private String serviceType;  // value is ServiceType.typeId
+    private String userId; // User.userId
+    private String serviceType; // value is ServiceType.typeId
     @Indexed
     private String serviceId;
     @Indexed
@@ -33,7 +34,7 @@ public class Order {
     private LocalDateTime orderCancelTime;
     @Indexed
     private int managementStatus = 0; // 0, nothing, 1, complained , 2, soleved
-    private LocalDateTime managementStatusChangeTime; 
+    private LocalDateTime managementStatusChangeTime;
     private int feedbackRate; // [1,5]
     private String feedback;
     private LocalDateTime feedbackTime;

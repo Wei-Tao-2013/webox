@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.webox.common.model.MessageCount;
 
-public interface MessageRepositoryCustom{
+public interface MessageRepositoryCustom {
     public List<MessageCount> unReadMessageCount(String receiver);
-    
+
 }

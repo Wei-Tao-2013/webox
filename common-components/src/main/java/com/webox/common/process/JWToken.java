@@ -12,8 +12,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-public class JWToken{
- 
+public class JWToken {
+
     @Value("${encrypted.tokenSecret}")
     private String tokenSecret;
 
@@ -25,13 +25,13 @@ public class JWToken{
         if (tokenSeed == null) {
             response.setAppInfo("Token seed required");
 
-        }else {
-            String jwtToken = Jwts.builder().claim("tokenSeed",tokenSeed)
-                    .setIssuedAt(new Date()).setExpiration(new Date(System.currentTimeMillis()+this.duration ))
+        } else {
+            String jwtToken = Jwts.builder().claim("tokenSeed", tokenSeed).setIssuedAt(new Date())
+                    .setExpiration(new Date(System.currentTimeMillis() + this.duration))
                     .signWith(SignatureAlgorithm.HS256, this.tokenSecret).compact();
             response.setToken(jwtToken);
-            response.setAppStatus(AppConsts.RETURN_TRUE);  
-        }  
+            response.setAppStatus(AppConsts.RETURN_TRUE);
+        }
         return response;
     }
 }

@@ -1,6 +1,7 @@
 package com.webox.common.model;
 
 import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -8,7 +9,7 @@ public class Request implements java.io.Serializable {
 
 	/** For serialization. */
 	private static final long serialVersionUID = -8980734683931860246L;
-	
+
 	private String referralId;
 	private String referralType; // vendorType or service
 	private String tokenSeed;

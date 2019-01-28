@@ -5,10 +5,10 @@ import com.webox.common.model.Response;
 
 public interface ServiceRequestManage {
 
-    /* response a quoto to the request*/
+    /* response a quoto to the request */
     public Response acceptAServiceRequest(Request request);
-   
-    /* generate a order to the request*/
+
+    /* generate a order to the request */
     public Response acceptAServiceQuoto(Request request);
 
 }

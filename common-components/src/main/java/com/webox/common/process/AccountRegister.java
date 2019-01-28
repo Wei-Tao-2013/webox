@@ -16,44 +16,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AccountRegister {
 
-  private static final Logger logger = LoggerFactory.getLogger(AccountRegister.class);
+	private static final Logger logger = LoggerFactory.getLogger(AccountRegister.class);
 
-  @Autowired
-  UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
-  @Autowired
-  ServiceRepository serviceRepository;
+	@Autowired
+	ServiceRepository serviceRepository;
 
-  public abstract Response register(Request request);
+	public abstract Response register(Request request);
 
-  public abstract Response signAccount(Request request);
+	public abstract Response signAccount(Request request);
 
-  public abstract Response signOut(Request request);
+	public abstract Response signOut(Request request);
 
-  public abstract User loadUserInfo(String userId);
+	public abstract User loadUserInfo(String userId);
 
-
-  public Response profileUpdate(Request request) {
-    Response response = new Response();
-    User requestUser = request.getUser();
-    logger.debug("request {} ", GIutils.converToJson(request));
-    logger.debug("Useris {} ", GIutils.converToJson(requestUser));
-    if (requestUser != null) {
-      logger.debug("User email address is {} ", requestUser.getPrimaryEmail());
-      List<User> userList = userRepository.findByPrimaryEmail(requestUser.getPrimaryEmail());
-      if (userList.isEmpty()) {
-        response.setAppCode(AppConsts.REG_USERNOTFOUND);
-      } else {
-        User existUser = (User) userList.get(0);
-        requestUser.setUserId(existUser.getUserId());
-        userRepository.save(requestUser);
-        response.setAppCode(AppConsts.REG_USEUPDATED);
-      }
-    } else {
-      response.setAppCode(AppConsts.REG_USERNOTFOUND);
-    }
-    response.setAppStatus(AppConsts.RETURN_TRUE);
-    return response;
-  }
+	public Response profileUpdate(Request request) {
+		Response response = new Response();
+		User requestUser = request.getUser();
+		logger.debug("request {} ", GIutils.converToJson(request));
+		logger.debug("Useris {} ", GIutils.converToJson(requestUser));
+		if (requestUser != null) {
+			logger.debug("User email address is {} ", requestUser.getPrimaryEmail());
+			List<User> userList = userRepository.findByPrimaryEmail(requestUser.getPrimaryEmail());
+			if (userList.isEmpty()) {
+				response.setAppCode(AppConsts.REG_USERNOTFOUND);
+			} else {
+				User existUser = (User) userList.get(0);
+				requestUser.setUserId(existUser.getUserId());
+				userRepository.save(requestUser);
+				response.setAppCode(AppConsts.REG_USEUPDATED);
+			}
+		} else {
+			response.setAppCode(AppConsts.REG_USERNOTFOUND);
+		}
+		response.setAppStatus(AppConsts.RETURN_TRUE);
+		return response;
+	}
 
 }

@@ -1,6 +1,5 @@
 package com.webox.common.model;
 
-
 import java.time.LocalDateTime;
 
 import org.bson.types.Binary;
@@ -11,11 +10,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Document
-@Data  @NoArgsConstructor
-public class FileData{
+@Data
+@NoArgsConstructor
+public class FileData {
 
-   private @Id String  fileId;
-   private Binary fileData;
-   private LocalDateTime  uploadTime;
-  
+    private @Id String fileId;
+    private Binary fileData;
+    private LocalDateTime uploadTime;
+
 }

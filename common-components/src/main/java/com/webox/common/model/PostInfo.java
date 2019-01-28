@@ -11,10 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection="postInfo")
-@Data @NoArgsConstructor
+@Document(collection = "postInfo")
+@Data
+@NoArgsConstructor
 public class PostInfo {
-    
+
     private @Id String postInfoId;
     @Indexed
     private String serviceId;
@@ -22,21 +23,19 @@ public class PostInfo {
     private List<Photo> postPhoto = new ArrayList<Photo>();
     private LocalDateTime postDateTime;
     private LocalDateTime postUpdateDateTime;
-    private int readCounts = 0;   
+    private int readCounts = 0;
     private int agreeCounts = 0;
     private String postContent;
     @Indexed
-    private String status;  // Drafted, Published, Updated, Disabled
+    private String status; // Drafted, Published, Updated, Disabled
 
     public PostInfo addPostPhoto(Photo photo) {
         this.postPhoto.add(photo);
         return this;
     }
 
-    public PostInfo deletePostPhoto(Photo photo){
-       return this;
+    public PostInfo deletePostPhoto(Photo photo) {
+        return this;
     }
-
-   
 
 }

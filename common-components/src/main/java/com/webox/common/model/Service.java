@@ -10,20 +10,20 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
-
 import lombok.NoArgsConstructor;
 
 @Document
-@Data @NoArgsConstructor
+@Data
+@NoArgsConstructor
 public class Service {
-    
+
     private @Id String serviceId;
-    private String serviceType;  // refer to ServiceType
+    private String serviceType; // refer to ServiceType
     @Indexed
-    private String serviceName; 
+    private String serviceName;
     private int serviceCategory = 0; // 0 = general , 1 = activity , 2 = info
-    private int serviceOrderProcess = 3; // 0 = none  , 1 = customer , 2 = customer-vendor, 3 = customer-vendor-customer   
-    private String keywords;  
+    private int serviceOrderProcess = 3; // 0 = none , 1 = customer , 2 = customer-vendor, 3 = customer-vendor-customer
+    private String keywords;
     private List<Photo> servicePhoto = new ArrayList<Photo>();
     private String shortDesc;
     private String longDesc;
@@ -40,7 +40,7 @@ public class Service {
     private int sortNumber;
     private Double rank = new Double(0.0001);
 
-    private int reviewNumber;   
+    private int reviewNumber;
     private int subscribedNumber;
     private int orderNumber;
     private int positiveCmtsNum;
@@ -48,7 +48,7 @@ public class Service {
     private int neutralCmtsNum;
 
     @Indexed
-    private String userId;  // User.userId
+    private String userId; // User.userId
     private Contact contact;
     private Address address;
 
@@ -57,8 +57,8 @@ public class Service {
         return this;
     }
 
-    public Service deleteServicePhoto(Photo photo){
-       return this;
+    public Service deleteServicePhoto(Photo photo) {
+        return this;
     }
 
 }

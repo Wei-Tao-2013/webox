@@ -2,6 +2,7 @@ package com.webox.common.process;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 import com.webox.common.model.Photo;
 import com.webox.common.model.Request;
 import com.webox.common.model.Response;
@@ -14,24 +15,24 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component("generalServiceManage")
-public class GeneralServiceManage extends ServiceManage{
-    
+public class GeneralServiceManage extends ServiceManage {
+
     private static final Logger logger = LoggerFactory.getLogger(GeneralServiceManage.class);
-    
+
     public GeneralServiceManage() {
-    
+
     }
 
-	@Override
-	public Response storeImage(Request request,String fileName, Binary data) {
+    @Override
+    public Response storeImage(Request request, String fileName, Binary data) {
         Service service = new Service();
         service = request.getService();
-        String serviceId ;
+        String serviceId;
         Response response = new Response();
         LocalDateTime localDateTime = LocalDateTime.now();
-       
+
         String fileId = fileStore.storeFile(data);
-        if (fileName == null || "".equalsIgnoreCase(fileName.trim())){
+        if (fileName == null || "".equalsIgnoreCase(fileName.trim())) {
             fileName = fileId;
         }
         Photo photo = new Photo();
@@ -42,16 +43,16 @@ public class GeneralServiceManage extends ServiceManage{
         photo.setUploadTime(localDateTime);
 
         Service existService = serviceRepository.findByServiceId(service.getServiceId());
-        if (existService !=null) {
+        if (existService != null) {
             existService.addServicePhoto(photo);
-            serviceRepository.save(existService);    
+            serviceRepository.save(existService);
             serviceId = existService.getServiceId();
-        }else{
+        } else {
             service.addServicePhoto(photo);
             serviceRepository.save(service);
-            serviceId= service.getServiceId();
+            serviceId = service.getServiceId();
         }
-        
+
         response.setFileId(fileId);
         response.setServiceId(serviceId);
         response.setAppStatus(AppConsts.RETURN_TRUE);
@@ -59,15 +60,15 @@ public class GeneralServiceManage extends ServiceManage{
         return response;
     }
 
-	@Override
-	public Response getImages(String serviceId) {
-        Service service =  serviceRepository.findByServiceId(serviceId);
+    @Override
+    public Response getImages(String serviceId) {
+        Service service = serviceRepository.findByServiceId(serviceId);
         Response response = new Response();
-        if (service != null){
+        if (service != null) {
             List<Photo> photoList = service.getServicePhoto();
             response.setPhotoList(photoList);
             response.setAppStatus(AppConsts.RETURN_TRUE);
-        }else{
+        } else {
             response.setPhotoList(null);
             response.setAppStatus(AppConsts.RETURN_TRUE);
         }

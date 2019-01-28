@@ -1,10 +1,17 @@
 package com.webox.common.repository;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.lookup;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.replaceRoot;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
+
 import java.util.List;
 
 import com.webox.common.model.PostInfo;
 import com.webox.common.model.Service;
-import com.webox.common.model.WatchList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.*;
-import static org.springframework.data.mongodb.core.query.Criteria.*;
 
 public class WatchListRepositoryImpl implements WatchListRepositoryCustom {
 
@@ -39,7 +44,5 @@ public class WatchListRepositoryImpl implements WatchListRepositoryCustom {
                         unwind("watchlist_postInfo"), replaceRoot("watchlist_postInfo")), "watchList", PostInfo.class);
         return results.getMappedResults();
     }
-
-   
 
 }

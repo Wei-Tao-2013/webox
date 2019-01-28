@@ -1,6 +1,6 @@
 package com.webox.common.account;
 
-public interface AccountRegister{
+public interface AccountRegister {
 
     public String loginAccount(Account account);
 

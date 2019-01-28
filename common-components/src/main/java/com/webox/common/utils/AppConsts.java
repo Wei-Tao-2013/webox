@@ -39,15 +39,14 @@ public class AppConsts implements Serializable {
 	public static final String JOB_CANNOT_UPDATED = "02-001";
 	public static final String QUOTE_CANNOT_UPDATED = "02-002";
 
-
 	public static final String QUOTE_UPDATED_SUCCESS = "QUOTE_UPDATED_SUCCESS";
-	public static final String QUOTE_SENT ="QUOTE_SENT";
+	public static final String QUOTE_SENT = "QUOTE_SENT";
 	public static final String QUOTE_NOT_FOUND = "QUOTE_NOT_FOUND";
 	public static final String JOBLIST_LOADED = "JOBLIST_LOADED";
 	public static final String QUOTES_LOADED = "QUOTES_LOADED";
 	public static final String QUOTE_PRICE_SENT = "QUOTE_PRICE_SENT";
 	public static final String QUOTE_ACCEPT = "QUOTE_ACCEPT";
-	public static final String QUOTE_REJECTED ="QUOTE_REJECTED";
+	public static final String QUOTE_REJECTED = "QUOTE_REJECTED";
 	public static final String QUOTE_EXPIRED = "QUOTE_EXPIRED";
 	// 99 application level process
 	public static final String APP_REFRESHTOKEN = "01-001";
@@ -92,7 +91,8 @@ public class AppConsts implements Serializable {
 		jobStatusHashMap.put("JobCancel", 3);
 		jobStatusHashMap.put("JobAll", 99);
 
-		// 0 QuoteSent, 1 QuotePriceSent, 2 QuoteAccept 3 QuoteExpired 4, QuoteRejected 99, QuoteAll
+		// 0 QuoteSent, 1 QuotePriceSent, 2 QuoteAccept 3 QuoteExpired 4, QuoteRejected
+		// 99, QuoteAll
 		quoteStatusHashMap = new HashMap<String, Integer>();
 		jobStatusHashMap.put("QuoteSent", 0);
 		jobStatusHashMap.put("QuotePriceSent", 1);

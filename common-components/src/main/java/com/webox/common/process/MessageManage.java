@@ -228,7 +228,8 @@ public class MessageManage {
             LocalDateTime localDateTime = LocalDateTime.now();
             Instant instant = Instant.now();
             String timeStampSeconds = String.valueOf(instant.getEpochSecond());
-           // String messagePayload = this.contstructPayload(o, senderId, msgContent, timeStampSeconds, msgType)
+            // String messagePayload = this.contstructPayload(o, senderId, msgContent,
+            // timeStampSeconds, msgType)
 
             receiverIds.forEach(o -> {
 
